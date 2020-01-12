@@ -19,6 +19,7 @@ module.exports = override(
     modifyVars: { '@primary-color': '#1DA57A' },
   }),
   //ES7 装饰器语法兼容
+  //yarn add @babel/plugin-proposal-decorators --dev
   addDecoratorsLegacy(),
   //配置webpack路径别名
   addWebpackAlias({
