@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { Form, Input, Button, Icon, message } from 'antd';
 import axios from 'axios';
+import { connect } from 'react-redux';
+
 
 import logo from './logo.png';
 import './index.less';
+import { saveUserAsync } from '../../redux/actions';
 
-import { Form, Input, Button, Icon, message } from 'antd';
-
+@connect(null, { saveUserAsync })
 @Form.create()
 class Login extends Component {
   //登录请求
@@ -18,26 +21,15 @@ class Login extends Component {
         return;
       }
       const { username, password } = values;
-      axios.post(
-        '/api/login',
-        { username, password })
-        //响应成功
-        .then(response => {
-          console.log(response);
-          //登录成功
-          if (response.data.status === 0) {
-            this.props.history.replace('/');
-            //登录失败
-          } else {
-            message.error(response.data.msg);
-            this.props.form.resetFields(['password']);
-          }
+      //异步：保存用户数据
+      this.props.saveUserAsync(username, password)
+        .then(() => {
+          this.props.history.replace('/');
         })
-        //响应失败
-        .catch(e => {
-          console.log(e);
-          message.error('网络错误~');
-        });
+        .catch(msg => {
+          message.error(msg);
+          this.props.form.resetFields(['password']);
+        })
     });
   }
 
