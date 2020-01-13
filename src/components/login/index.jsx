@@ -18,16 +18,22 @@ class Login extends Component {
         return;
       }
       const { username, password } = values;
-      axios.post({ username, password })
+      axios.post(
+        '/api/login',
+        { username, password })
+        //响应成功
         .then(response => {
           console.log(response);
+          //登录成功
           if (response.data.status === 0) {
             this.props.history.replace('/');
+            //登录失败
           } else {
             message.error(response.data.msg);
             this.props.form.resetFields(['password']);
           }
         })
+        //响应失败
         .catch(e => {
           console.log(e);
           message.error('网络错误~');

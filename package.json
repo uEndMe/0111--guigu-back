@@ -46,5 +46,6 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.8.0",
     "redux-devtools-extension": "^2.13.8"
-  }
+  },
+  "proxy": "http://47.103.203.152"
 }
