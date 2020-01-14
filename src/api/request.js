@@ -1,6 +1,8 @@
 import axios from 'axios';
 import store from '$redux/store'
 
+import errCode from '$conf/error-code';
+
 //自定义 axios 请求
 const axiosInstance = axios.create({
   baseURL: '/api',
@@ -49,12 +51,6 @@ axiosInstance.interceptors.response.use(
   },
   //响应失败
   (err) => {
-    const errCode = {
-      401: '权限不足',
-      403: '禁止访问',
-      404: '资源丢失',
-      500: '服务器故障',
-    }
     let errMsg = '';
     if (err.response) {
       errMsg = errCode[err.response.status] || '其他错误: ' + err.response.status;

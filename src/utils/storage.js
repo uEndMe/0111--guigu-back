@@ -17,4 +17,5 @@ export function setItem(key, value) {
 
 export function removeItem(key) {
   localStorage.removeItem(key);
-} 
+}
+
