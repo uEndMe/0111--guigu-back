@@ -1,4 +1,5 @@
 import axios from 'axios';
+import store from '$redux/store'
 
 //自定义 axios 请求
 const axiosInstance = axios.create({
@@ -13,7 +14,7 @@ const axiosInstance = axios.create({
 //请求拦截器
 axiosInstance.interceptors.request.use(
   (config) => {
-    let token = '';
+    const token = store.getState().user.token;
     if (token) {
       config.headers.authorization = `Bearer ${token}`;
     }
@@ -64,7 +65,7 @@ axiosInstance.interceptors.response.use(
         errMsg = '连接超时';
       } else {
         console.log(err);
-        errMsg = '响应失败';
+        errMsg = '没有响应';
       }
     }
     return Promise.reject(errMsg);

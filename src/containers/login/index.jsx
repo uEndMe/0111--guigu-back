@@ -6,7 +6,9 @@ import { connect } from 'react-redux';
 import logo from './logo.png';
 import './index.less';
 import { saveUserAsync } from '../../redux/actions';
+import withCheckLogin from '$cont/with-check-login';
 
+@withCheckLogin
 @connect(null, { saveUserAsync })
 @Form.create()
 class Login extends Component {
