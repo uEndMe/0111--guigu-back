@@ -27,12 +27,18 @@ axiosInstance.interceptors.request.use(
         .slice(1);
       config.headers['content-type'] = 'application/x-www-form-urlencoded';
     } */
+    return config;
+  },
+  (err) => {
+    console.log('请求失败: ', err);
+    return Promise.reject(err);
   }
 )
 
 
 //响应拦截器
 axiosInstance.interceptors.response.use(
+  //响应成功
   (response) => {
     if (response.data.status === 0) {
       return response.data.data;
@@ -40,6 +46,7 @@ axiosInstance.interceptors.response.use(
       return Promise.reject(response.data.msg);
     }
   },
+  //响应失败
   (err) => {
     const errCode = {
       401: '权限不足',
@@ -49,15 +56,18 @@ axiosInstance.interceptors.response.use(
     }
     let errMsg = '';
     if (err.response) {
-      errMsg = errCode[err.response.status] || '未定义错误: ' + err.response.status;
+      errMsg = errCode[err.response.status] || '其他错误: ' + err.response.status;
     } else {
       if (err.message.indexOf('Network Error') !== -1) {
         errMsg = '网络故障';
       } else if (err.message.indexOf('timeout') !== -1) {
         errMsg = '连接超时';
+      } else {
+        console.log(err);
+        errMsg = '响应失败';
       }
     }
-    return Promise.reject(errMsg || '未知错误');
+    return Promise.reject(errMsg);
   }
 )
 

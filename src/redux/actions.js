@@ -1,9 +1,8 @@
 //工厂函数：创建 action 对象；
 
 import { reqLogin } from '../api';
-import { setItem } from '../../utils/storage';
-import { SAVE_USER } from '../action-types';
-import { message } from 'antd';
+import { setItem } from '../utils/storage';
+import { SAVE_USER } from './action-types';
 
 const saveUser = user => ({ type: SAVE_USER, data: user });
 
@@ -18,12 +17,6 @@ export const saveUserAsync = (username, password) => {
         setItem('user', response);
         //redux
         dispatch(saveUser(response));
-        //ui
-        this.props.history.replace('/');
-      })
-      .catch(msg => {
-        message.error(msg);
-        this.props.form.resetFields(['password']);
       })
   }
 }

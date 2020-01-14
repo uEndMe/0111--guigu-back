@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SAVE_USER } from '../action-types';
+import { SAVE_USER } from './action-types';
 import { getItem } from '../utils/storage';
 
 

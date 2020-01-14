@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Input, Button, Icon, message } from 'antd';
-import axios from 'axios';
 import { connect } from 'react-redux';
 
 
@@ -20,6 +19,8 @@ class Login extends Component {
         console.log(err);
         return;
       }
+
+
       const { username, password } = values;
       //异步：保存用户数据
       this.props.saveUserAsync(username, password)
