@@ -3,13 +3,16 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Home from './components/home';
 import Login from './containers/login';
+import BasicLayout from '$comp/basic-layout';
 
 export default class App extends Component {
   render() {
     return <Router>
       <Switch>
-        <Route path='/' exact component={Home}></Route>
         <Route path='/login' exact component={Login}></Route>
+        <BasicLayout>
+          <Route path='/' exact component={Home}></Route>
+        </BasicLayout>
       </Switch>
     </Router>
   }

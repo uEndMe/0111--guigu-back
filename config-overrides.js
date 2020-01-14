@@ -30,5 +30,6 @@ module.exports = override(
     '$utils': resolve(__dirname, './src/utils'),
     '$conf': resolve(__dirname, './src/config'),
     '$redux': resolve(__dirname, './src/redux'),
+    '$assets': resolve(__dirname, './src/assets'),
   }),
 );

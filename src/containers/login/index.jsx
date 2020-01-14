@@ -3,7 +3,7 @@ import { Form, Input, Button, Icon, message } from 'antd';
 import { connect } from 'react-redux';
 
 
-import logo from './logo.png';
+import logo from '$assets/images/logo.png';
 import './index.less';
 import { saveUserAsync } from '../../redux/actions';
 import withCheckLogin from '$cont/with-check-login';
