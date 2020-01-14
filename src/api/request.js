@@ -1,4 +1,7 @@
 import axios from 'axios';
+import store from '$redux/store'
+
+import errCode from '$conf/error-code';
 
 //自定义 axios 请求
 const axiosInstance = axios.create({
@@ -13,7 +16,7 @@ const axiosInstance = axios.create({
 //请求拦截器
 axiosInstance.interceptors.request.use(
   (config) => {
-    let token = '';
+    const token = store.getState().user.token;
     if (token) {
       config.headers.authorization = `Bearer ${token}`;
     }
@@ -48,12 +51,6 @@ axiosInstance.interceptors.response.use(
   },
   //响应失败
   (err) => {
-    const errCode = {
-      401: '权限不足',
-      403: '禁止访问',
-      404: '资源丢失',
-      500: '服务器故障',
-    }
     let errMsg = '';
     if (err.response) {
       errMsg = errCode[err.response.status] || '其他错误: ' + err.response.status;
@@ -64,7 +61,7 @@ axiosInstance.interceptors.response.use(
         errMsg = '连接超时';
       } else {
         console.log(err);
-        errMsg = '响应失败';
+        errMsg = '没有响应';
       }
     }
     return Promise.reject(errMsg);

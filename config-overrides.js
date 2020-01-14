@@ -5,6 +5,7 @@ const {
   addDecoratorsLegacy,
   addWebpackAlias,
 } = require('customize-cra');
+const { resolve } = require('path');
 
 module.exports = override(
   //按需加载
@@ -23,6 +24,12 @@ module.exports = override(
   addDecoratorsLegacy(),
   //配置webpack路径别名
   addWebpackAlias({
-
+    '$comp': resolve(__dirname, './src/components'),
+    '$cont': resolve(__dirname, './src/containers'),
+    '$api': resolve(__dirname, './src/api'),
+    '$utils': resolve(__dirname, './src/utils'),
+    '$conf': resolve(__dirname, './src/config'),
+    '$redux': resolve(__dirname, './src/redux'),
+    '$assets': resolve(__dirname, './src/assets'),
   }),
 );
