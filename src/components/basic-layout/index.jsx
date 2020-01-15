@@ -9,10 +9,12 @@ import './index.less';
 const { Content, Footer, Sider } = Layout;
 
 export default class BasicLayout extends Component {
+  //antd 定义的折叠状态
   state = {
     collapsed: false,
   };
 
+  //折叠
   onCollapse = collapsed => {
     console.log(collapsed);
     this.setState({ collapsed });
@@ -25,11 +27,7 @@ export default class BasicLayout extends Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="layoutLogo" >
             <img src={logo} alt="尚硅谷" />
-            <h1 style={
-              this.state.collapsed
-                ? { width: 0, opacity: 0 }
-                : { width: 80, opacity: 1 }
-            }>硅谷后台</h1>
+            <h1 className={this.state.collapsed && 'fold'}>硅谷后台</h1>
           </div>
           <LeftNav />
         </Sider>

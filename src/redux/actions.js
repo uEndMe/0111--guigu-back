@@ -2,9 +2,11 @@
 
 import { reqLogin } from '../api';
 import { setItem } from '../utils/storage';
-import { SAVE_USER } from './action-types';
+import { SAVE_USER, REMOVE_USER } from './action-types';
 
 const saveUser = user => ({ type: SAVE_USER, data: user });
+
+export const removeUser = () => ({ type: REMOVE_USER })
 
 //异步保存用户数据
 export const saveUserAsync = (username, password) => {
@@ -19,4 +21,4 @@ export const saveUserAsync = (username, password) => {
         dispatch(saveUser(response));
       })
   }
-}
+};

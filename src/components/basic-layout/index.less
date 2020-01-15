@@ -13,9 +13,16 @@
   h1{
     margin-left:10px;
     margin-bottom: 0;
+    width: 80px;
+    opacity: 1;
     color: #fff;
     font-size: 20px;
     white-space: nowrap;
-    transition: width .2s, opacity .3s;
+    transition: margin .2s, width .2s, opacity .3s;
+    &.fold{
+      margin: 0;
+      width: 0;
+      opacity: 0;
+    }
   }
 }
