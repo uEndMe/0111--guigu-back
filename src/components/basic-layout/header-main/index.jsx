@@ -24,6 +24,7 @@ import './index.less';
 @withRouter
 class HeaderMain extends Component {
   state = {
+    //用于标记图标
     maxScreen: false
   }
 
@@ -31,13 +32,13 @@ class HeaderMain extends Component {
   componentDidMount() {
     screenfull.on('change', this.toggleScreen);
   }
-  //自动触发
+  //修改图标
   toggleScreen = () => {
     this.setState({
       maxScreen: !this.state.maxScreen
     })
   }
-  //手动触发
+  //切换视图
   clickScreen = () => {
     screenfull.toggle();
   }

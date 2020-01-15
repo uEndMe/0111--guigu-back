@@ -27,7 +27,7 @@ export default class BasicLayout extends Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="layoutLogo" >
             <img src={logo} alt="尚硅谷" />
-            <h1 className={this.state.collapsed && 'fold'}>硅谷后台</h1>
+            <h1 className={this.state.collapsed ? 'fold' : null}>硅谷后台</h1>
           </div>
           <LeftNav />
         </Sider>
