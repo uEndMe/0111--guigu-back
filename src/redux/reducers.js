@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SAVE_USER } from './action-types';
+import { SAVE_USER, REMOVE_USER } from './action-types';
 import { getItem } from '../utils/storage';
 
 
@@ -8,6 +8,8 @@ function user(prevState = initUser, action) {
   switch (action.type) {
     case SAVE_USER:
       return action.data;
+    case REMOVE_USER:
+      return {};
     default:
       return prevState;
   }
