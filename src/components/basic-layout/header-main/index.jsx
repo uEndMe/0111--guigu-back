@@ -3,9 +3,10 @@ import { Button, Icon, Modal } from 'antd';
 import screenfull from 'screenfull';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 import { removeItem } from '$utils/storage';
-import { removeUser } from '$redux/actions';
+import { removeUser, forLang } from '$redux/actions';
 
 import './index.less';
 
@@ -14,11 +15,17 @@ import './index.less';
   [mapDispatchToProps],     //函数方法？？
   [mergeProps], 
   [options]) */
+@injectIntl
 @connect(
-  (state) => ({ username: state.user.user && state.user.user.username }),
-  {
-    removeUser
-  }
+  //1. 传状态数据
+  (state) => ({
+    // 传 username
+    username: state.user.user && state.user.user.username,
+    // 传 lang
+    lang: state.lang,
+  }),
+  //2. 传更新状态数据的方法
+  { removeUser, forLang }
 )
 //传三大属性
 @withRouter
@@ -48,8 +55,9 @@ class HeaderMain extends Component {
   }
   //登出
   logout = () => {
+    const { intl } = this.props;
     Modal.confirm({
-      title: '确认退出吗？',
+      title: intl.formatMessage({ id: 'message_logout' }),
       // content:'',
       onOk: () => {
         //清空用户数据
@@ -61,7 +69,16 @@ class HeaderMain extends Component {
       // onCancel:()=>{},
     })
   }
-
+  //切换语言
+  forLang = ({ target: { textContent } }) => {
+    const lang =
+      textContent === '简体中文'
+        ? 'zh-TW'
+        : textContent === '繁體中文'
+          ? 'en-US'
+          : 'zh-CN';
+    this.props.forLang(lang);
+  }
   render() {
     const { state: { maxScreen }, props: { username } } = this;
     return (
@@ -70,14 +87,20 @@ class HeaderMain extends Component {
           <Button size="small" onClick={this.clickScreen}>
             <Icon type={maxScreen ? 'fullscreen-exit' : 'fullscreen'} />
           </Button>
-          <Button size="small" className='header-main-lang' >
-            English
+          <Button size="small" className='header-main-lang' onClick={this.forLang}>
+            <FormattedMessage id="_thisLanguage" />
           </Button>
           <span>hello, {username}~~</span>
-          <Button size="small" type="link" onClick={this.logout}>退出</Button>
+          <Button size="small" type="link" onClick={this.logout}>
+            {/* 退出 */}
+            <FormattedMessage id="exit" />
+          </Button>
         </div>
         <div className="header-main-bottom">
-          <span className="header-main-left">商品管理</span>
+          <span className="header-main-left">
+            {/* 商品管理 */}
+            <FormattedMessage id="products" />
+          </span>
           <span className="header-main-right">2020/01/14 15:58:37</span>
         </div>
       </div>

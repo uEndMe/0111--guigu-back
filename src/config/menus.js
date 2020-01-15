@@ -1,44 +1,44 @@
 const menus = new Map([
-  ['/', {
+  ['home', {
     title: '首页',
     icon: 'home',
   }],
-  ['/products', {
-    title: '商品',
+  ['products', {
+    title: '商品管理',
     icon: 'appstore',
     children: new Map([
-      ['/products/category', {
+      ['category', {
         title: '分类管理',
         icon: 'bars',
       }],
-      ['/products/product', {
+      ['product', {
         title: '商品管理',
         icon: 'tool',
       }],
     ])
   }],
-  ['/user', {
+  ['user', {
     title: '用户管理',
     icon: 'user',
   }],
-  ['/role', {
+  ['role', {
     title: '权限管理',
     icon: 'safety-certificate',
   }],
-  ['/charts', {
+  ['charts', {
     title: '图形图表',
     icon: 'area-chart',
     children: new Map([
-      ['/charts/bar', {
+      ['bar', {
         title: '柱状图',
         icon: 'bar-chart',
       }],
-      ['/charts/pie', {
-        title: '柱状图',
+      ['pie', {
+        title: '饼形图',
         icon: 'pie-chart',
       }],
-      ['/charts/line', {
-        title: '柱状图',
+      ['line', {
+        title: '折线图',
         icon: 'line-chart',
       }],
     ])

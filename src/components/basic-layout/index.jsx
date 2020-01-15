@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Breadcrumb } from 'antd';
+import { FormattedMessage } from 'react-intl';
 
 import LeftNav from './left-nav';
 import HeaderMain from './header-main';
@@ -14,9 +15,8 @@ export default class BasicLayout extends Component {
     collapsed: false,
   };
 
-  //折叠
+  //接收新折叠参数
   onCollapse = collapsed => {
-    console.log(collapsed);
     this.setState({ collapsed });
   };
 
@@ -27,7 +27,10 @@ export default class BasicLayout extends Component {
         <Sider collapsible collapsed={this.state.collapsed} onCollapse={this.onCollapse}>
           <div className="layoutLogo" >
             <img src={logo} alt="尚硅谷" />
-            <h1 className={this.state.collapsed ? 'fold' : null}>硅谷后台</h1>
+            <h1 className={this.state.collapsed ? 'fold' : null}>
+              {/* 硅谷后台 */}
+              <FormattedMessage id="guigu" />
+            </h1>
           </div>
           <LeftNav />
         </Sider>

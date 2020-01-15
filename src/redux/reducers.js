@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SAVE_USER, REMOVE_USER } from './action-types';
+import { SAVE_USER, REMOVE_USER, FOR_LANG } from './action-types';
 import { getItem } from '../utils/storage';
 
 
@@ -15,13 +15,16 @@ function user(prevState = initUser, action) {
   }
 }
 
-function bbb(prevState = 222, action) {
+const initLang = navigator.language || navigator.languages[0] || 'zh-CN';
+function lang(prevState = initLang, action) {
   switch (action.type) {
+    case FOR_LANG:
+      return action.data;
     default:
       return prevState;
   }
 }
 export default combineReducers({
   user,
-  bbb,
+  lang,
 });
