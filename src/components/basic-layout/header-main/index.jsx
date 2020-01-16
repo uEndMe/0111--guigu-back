@@ -80,7 +80,8 @@ class HeaderMain extends Component {
     this.props.forLang(lang);
   }
   render() {
-    const { state: { maxScreen }, props: { username } } = this;
+    const { state: { maxScreen }, props: { username, location: { pathname } } } = this;
+    const pathSet = pathname.split('/');
     return (
       <div className="header-main">
         <div className="header-main-top">
@@ -99,7 +100,7 @@ class HeaderMain extends Component {
         <div className="header-main-bottom">
           <span className="header-main-left">
             {/* 商品管理 */}
-            <FormattedMessage id="products" />
+            <FormattedMessage id={pathSet[2] || pathSet[1]} />
           </span>
           <span className="header-main-right">2020/01/14 15:58:37</span>
         </div>
