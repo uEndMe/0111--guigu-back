@@ -4,6 +4,7 @@ import screenfull from 'screenfull';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { FormattedMessage, injectIntl } from 'react-intl';
+import dayjs from 'dayjs';
 
 import { removeItem } from '$utils/storage';
 import { removeUser, forLang } from '$redux/actions';
@@ -38,6 +39,7 @@ class HeaderMain extends Component {
   //绑定
   componentDidMount() {
     screenfull.on('change', this.toggleScreen);
+
   }
   //修改图标
   toggleScreen = () => {
@@ -82,6 +84,10 @@ class HeaderMain extends Component {
   render() {
     const { state: { maxScreen }, props: { username, location: { pathname } } } = this;
     const pathSet = pathname.split('/');
+    setTimeout(() => {
+      this.setState({});
+      console.log(111);
+    }, 1000);
     return (
       <div className="header-main">
         <div className="header-main-top">
@@ -102,7 +108,10 @@ class HeaderMain extends Component {
             {/* 商品管理 */}
             <FormattedMessage id={pathSet[2] || pathSet[1]} />
           </span>
-          <span className="header-main-right">2020/01/14 15:58:37</span>
+          <span className="header-main-right">
+            {/*  2020/01/14 15:58:37 */}
+            {dayjs().format('YYYY/MM/DD HH:mm:ss')}
+          </span>
         </div>
       </div>
     )
