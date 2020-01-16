@@ -86,7 +86,6 @@ class HeaderMain extends Component {
     const pathSet = pathname.split('/');
     setTimeout(() => {
       this.setState({});
-      console.log(111);
     }, 1000);
     return (
       <div className="header-main">
@@ -106,7 +105,7 @@ class HeaderMain extends Component {
         <div className="header-main-bottom">
           <span className="header-main-left">
             {/* 商品管理 */}
-            <FormattedMessage id={pathSet[2] || pathSet[1]} />
+            <FormattedMessage id={pathSet[2] || pathSet[1] || '_null'} />
           </span>
           <span className="header-main-right">
             {/*  2020/01/14 15:58:37 */}

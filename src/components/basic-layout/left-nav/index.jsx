@@ -54,7 +54,7 @@ class LeftNav extends Component {
     const [, start, url] = this.props.location.pathname.split('/');
     return <Menu
       theme="dark"  //主题色
-      defaultSelectedKeys={[url]}  //默认选中
+      defaultSelectedKeys={[url || start]}  //默认选中, 有隐患：地址栏更长时，无法判断。。。
       defaultOpenKeys={[start]}  //默认展开的菜单
       mode="inline"
     >

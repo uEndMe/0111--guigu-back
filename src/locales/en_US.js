@@ -1,4 +1,5 @@
 const en_US = {
+  _null: '',
   _thisLanguage: 'English',
   message_logout: 'Are you ready to quit?',
 }

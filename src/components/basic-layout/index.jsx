@@ -6,10 +6,12 @@ import LeftNav from './left-nav';
 import HeaderMain from './header-main';
 import logo from '$assets/images/logo.png';
 import './index.less';
+import withCheckLogin from '$cont/with-check-login';
 
 const { Content, Footer, Sider } = Layout;
 
-export default class BasicLayout extends Component {
+@withCheckLogin
+class BasicLayout extends Component {
   //antd 定义的折叠状态
   state = {
     collapsed: false,
@@ -51,3 +53,5 @@ export default class BasicLayout extends Component {
     );
   }
 }
+
+export default BasicLayout;

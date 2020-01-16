@@ -7,10 +7,10 @@ import en_US from 'antd/es/locale/en_US'
 import { IntlProvider } from 'react-intl';
 import { connect } from 'react-redux';
 
-import Home from './components/home';
 import Login from './containers/login';
 import BasicLayout from '$comp/basic-layout';
 import intlPack from '$locales';
+import routes from '$conf/routes';
 
 @connect(
   //1.传状态数据, 传 lang
@@ -35,7 +35,7 @@ class App extends Component {
             <Switch>
               <Route path='/login' exact component={Login} />
               <BasicLayout>
-                <Route path='/' exact component={Home} />
+                {routes.map(i => <Route {...i} key={i.path} />)}
               </BasicLayout>
             </Switch>
           </Router>
