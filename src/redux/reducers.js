@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SAVE_USER, REMOVE_USER, FOR_LANG } from './action-types';
+import { SAVE_USER, REMOVE_USER, FOR_LANG, GET_CATEGORY_LIST } from './action-types';
 import { getItem } from '../utils/storage';
 
 
@@ -24,7 +24,21 @@ function lang(prevState = initLang, action) {
       return prevState;
   }
 }
+
+
+const initCategories = [];
+function categories(prevState = initCategories, action) {
+  switch (action.type) {
+    case GET_CATEGORY_LIST:
+      return action.data;
+    default:
+      return prevState;
+  }
+}
+
+
 export default combineReducers({
   user,
   lang,
+  categories,
 });

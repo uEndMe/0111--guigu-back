@@ -8,3 +8,12 @@ export const reqLogin = (username, password) => {
     data: { username, password }
   });
 }
+
+//获取分类
+
+export const reqGetCategoryList = () => {
+  return axiosInstance({
+    url: '/category/get',
+    method: 'GET',
+  })
+}
