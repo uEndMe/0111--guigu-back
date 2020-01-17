@@ -1,5 +1,6 @@
 import Home from '$comp/home';
 import Category from '$comp/category';
+import Product from '$comp/product';
 
 const routes = [
   {
@@ -8,8 +9,13 @@ const routes = [
     exact: true,
   },
   {
-    path: '/category',
+    path: '/products/category',
     component: Category,
+    exact: true,
+  },
+  {
+    path: '/products/product',
+    component: Product,
     exact: true,
   },
 ];
