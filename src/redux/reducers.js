@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SAVE_USER, REMOVE_USER, FOR_LANG, GET_CATEGORY_LIST, ADD_CLASS, SET_CLASS } from './action-types';
+import { SAVE_USER, REMOVE_USER, FOR_LANG, GET_CATEGORY_LIST, ADD_CLASS, SET_CLASS, DEL_CLASS } from './action-types';
 import { getItem } from '../utils/storage';
 
 //用户
@@ -35,9 +35,11 @@ function categories(prevState = initCategories, action) {
       return action.data;
     case ADD_CLASS:
       return [...prevState, action.data];
+    case DEL_CLASS:
+      return prevState.filter((category) => category !== action.data._id);
     case SET_CLASS:
       return prevState.map(category => {
-        return category._id === action.data._id
+        return category._id === action.data
           ? action.data
           : category;
       })

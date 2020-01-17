@@ -34,3 +34,12 @@ export const reqSetClass = (categoryId, categoryName) => {
     data: { categoryId, categoryName },
   })
 }
+
+//删除分类
+export const reqDelClass = (categoryId) => {
+  return axiosInstance({
+    url: '/category/delete',
+    method: 'POST',
+    data: { categoryId },
+  })
+}

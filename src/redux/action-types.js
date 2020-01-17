@@ -6,3 +6,4 @@ export const FOR_LANG = 'FOR_LANG';
 export const GET_CATEGORY_LIST = 'GET_CATEGORY_LIST';
 export const ADD_CLASS = 'ADD_CLASS';
 export const SET_CLASS = 'SET_CLASS';
+export const DEL_CLASS = 'DEL_CLASS';

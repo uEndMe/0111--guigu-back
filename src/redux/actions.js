@@ -1,8 +1,8 @@
 //工厂函数：创建 action 对象；
 
-import { reqLogin, reqGetCategoryList, reqAddClass, reqSetClass } from '../api';
+import { reqLogin, reqGetCategoryList, reqAddClass, reqSetClass, reqDelClass } from '../api';
 import { setItem } from '../utils/storage';
-import { SAVE_USER, REMOVE_USER, FOR_LANG, GET_CATEGORY_LIST, ADD_CLASS, SET_CLASS } from './action-types';
+import { SAVE_USER, REMOVE_USER, FOR_LANG, GET_CATEGORY_LIST, ADD_CLASS, SET_CLASS, DEL_CLASS } from './action-types';
 
 
 export const forLang = lang => ({ type: FOR_LANG, data: lang });
@@ -60,6 +60,18 @@ export const setClassAsync = (categoryId, categoryName) => {
       .then((response) => {
         //dispatch更新
         dispatch(setClass(response));
+      })
+  }
+}
+
+//删除分类
+const delClass = (id) => ({ type: DEL_CLASS, data: id })
+export const delClassAsync = (categoryId) => {
+  return (dispatch) => {
+    return reqDelClass(categoryId)
+      .then((response) => {
+        //dispatch更新
+        dispatch(delClass(response));
       })
   }
 }

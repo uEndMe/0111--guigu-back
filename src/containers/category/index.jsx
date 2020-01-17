@@ -3,7 +3,7 @@ import { Card, Button, Icon, Table, Modal, message } from 'antd';
 import { connect } from 'react-redux';
 
 // import { data } from '$datas/category'; //测试数据
-import { getCategoryListAsync, addClassAsync, setClassAsync } from '$redux/actions';
+import { getCategoryListAsync, addClassAsync, setClassAsync, delClassAsync } from '$redux/actions';
 import AddForm from './add-category-form';
 
 @connect(
@@ -14,6 +14,7 @@ import AddForm from './add-category-form';
     getCategoryListAsync,
     addClassAsync,
     setClassAsync,
+    delClassAsync,
   }
 )
 class Category extends Component {
@@ -36,6 +37,24 @@ class Category extends Component {
     })
   }
 
+  //删除分类
+  openDel = (category) => {
+    return () => {
+      Modal.confirm({
+        title: `您确认要删除${category.name}分类吗？`,
+        onOk: () => {
+          this.props.delClassAsync(category._id)
+            .then(() => {
+              message.success('删除分类成功~');
+            })
+            .catch((err) => {
+              message.error(err);
+            })
+        }
+      })
+    }
+  }
+
   //添加分类
   add = () => {
 
@@ -55,7 +74,7 @@ class Category extends Component {
 
   //修改分类
   set = () => {
-    this._getData(({ categoryName }, { resetFields }) => {
+    this._getData(({ categoryName }) => {
       const { handleData: { _id } } = this.state
       //发送请求，更新后端数据
       this.props.setClassAsync(_id, categoryName)
@@ -93,7 +112,7 @@ class Category extends Component {
           //dataIndex,可以指定属性
           return <div>
             <Button type='link' onClick={this.handleDialog('set', category)} style={{ marginLeft: -15, }} >修改</Button>
-            <Button type='link' onClick={this.handleDialog('del')} >删除</Button>
+            <Button type='link' onClick={this.openDel(category)} >删除</Button>
           </div>
         }
       },
@@ -103,7 +122,7 @@ class Category extends Component {
     const str = {
       add: '添加分类',
       set: '修改分类',
-      del: '删除分类',
+      del: '删除分类',  //这个用确认框做了，不用写在这里
     }
 
     const {
