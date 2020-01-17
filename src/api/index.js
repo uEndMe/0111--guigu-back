@@ -10,10 +10,27 @@ export const reqLogin = (username, password) => {
 }
 
 //获取分类
-
 export const reqGetCategoryList = () => {
   return axiosInstance({
     url: '/category/get',
     method: 'GET',
+  })
+}
+
+//添加分类
+export const reqAddClass = (categoryName) => {
+  return axiosInstance({
+    url: '/category/add',
+    method: 'POST',
+    data: { categoryName },
+  })
+}
+
+//修改分类
+export const reqSetClass = (categoryId, categoryName) => {
+  return axiosInstance({
+    url: '/category/update',
+    method: 'POST',
+    data: { categoryId, categoryName },
   })
 }

@@ -1,5 +1,5 @@
 import Home from '$comp/home';
-import Category from '$comp/category';
+import Category from '$cont/category';
 import Product from '$comp/product';
 
 const routes = [

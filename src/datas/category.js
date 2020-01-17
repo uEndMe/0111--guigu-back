@@ -1,26 +1,4 @@
-import React from 'react';
-import { Button } from 'antd';
-
-
-
-export const columns = [
-  {
-    title: '品类名称',
-    dataIndex: 'name',
-  },
-  {
-    title: '操作',
-    width: '33.33%',
-    // dataIndex: 'operation',
-    render: () => {
-      return <div>
-        <Button type='link' style={{ marginLeft: -15, }} >修改</Button>
-        <Button type='link' >删除</Button>
-      </div>
-    }
-  },
-]
-
+/*
 export const data = [
   {
     key: 1,
@@ -56,3 +34,4 @@ export const data = [
   },
 ];
 
+ */
