@@ -43,3 +43,12 @@ export const reqDelClass = (categoryId) => {
     data: { categoryId },
   })
 }
+
+//获取商品
+export const reqGetProduct = (pageNum, pageSize) => {
+  return axiosInstance({
+    url: '/product/list',
+    method: 'GET',
+    params: { pageNum, pageSize },
+  })
+}

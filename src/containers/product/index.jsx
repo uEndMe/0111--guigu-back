@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { Card, Select, Input, Button, Icon, Table } from 'antd';
+import { Card, Select, Input, Button, Icon, Table, message } from 'antd';
 
+import { reqGetProduct } from '$api'
 
 export default class Product extends Component {
+
+  state = {
+    products: [],
+    total: 0,
+  }
+
   columns = [
     {
       title: '商品名称',
@@ -36,9 +43,26 @@ export default class Product extends Component {
         </div>
       }
     }
-  ]
+  ];
+
+  getProduct = (pageName, pageSize) => {
+    reqGetProduct(pageName, pageSize)
+      .then(({ list, total }) => {
+        this.setState({ products: list, total });
+        message.success('获取商品列表数据成功~');
+      })
+      .catch((err) => {
+        message.error(err)
+      })
+  }
+
+  componentDidMount() {
+    this.getProduct(1, 3);
+  }
+
   render() {
     const { Option } = Select;
+    const { products, total } = this.state;
     return <Card
       title={
         <div>
@@ -59,14 +83,19 @@ export default class Product extends Component {
     >
       <Table
         columns={this.columns}
-        dataSource={[{}, {}, {}, {}]}
+        dataSource={products}
         bordered
         pagination={{
           pageSizeOptions: ['3', '6', '9'],
           defaultPageSize: 3,
           showSizeChanger: true,
           showQuickJumper: true,
+          total,
+          onChange: this.getProduct,
+          //pageSize 变化的回调
+          onShowSizeChange: this.getProduct,
         }}
+        rowKey='_id'
       />
     </Card>
   }
