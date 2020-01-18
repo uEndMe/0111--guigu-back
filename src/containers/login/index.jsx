@@ -22,12 +22,11 @@ class Login extends Component {
         return;
       }
 
-
       const { username, password } = values;
       //异步：保存用户数据
       this.props.saveUserAsync(username, password)
         .then(() => {
-          this.props.history.replace('/');
+          this.props.history.replace('/home');
         })
         .catch(msg => {
           message.error(msg);

@@ -16,14 +16,15 @@ export default function withCheckLogin(Wrapped) {
         location: { pathname }
       } = this.props;
       if (token) {
-        if (pathname === '/login') {
-          return <Redirect to="/" />
+        if (pathname === '/login' || pathname === '/') {
+          return <Redirect to="/home" />
         }
       } else {
-        if (pathname === '/') {
+        if (pathname !== '/login') {
           return <Redirect to="/login" />
         }
       }
+      //最终：不跳转
       return <Wrapped {...this.props} />
     }
   }

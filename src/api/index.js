@@ -8,3 +8,47 @@ export const reqLogin = (username, password) => {
     data: { username, password }
   });
 }
+
+//获取分类
+export const reqGetCategoryList = () => {
+  return axiosInstance({
+    url: '/category/get',
+    method: 'GET',
+  })
+}
+
+//添加分类
+export const reqAddClass = (categoryName) => {
+  return axiosInstance({
+    url: '/category/add',
+    method: 'POST',
+    data: { categoryName },
+  })
+}
+
+//修改分类
+export const reqSetClass = (categoryId, categoryName) => {
+  return axiosInstance({
+    url: '/category/update',
+    method: 'POST',
+    data: { categoryId, categoryName },
+  })
+}
+
+//删除分类
+export const reqDelClass = (categoryId) => {
+  return axiosInstance({
+    url: '/category/delete',
+    method: 'POST',
+    data: { categoryId },
+  })
+}
+
+//获取商品
+export const reqGetProduct = (pageNum, pageSize) => {
+  return axiosInstance({
+    url: '/product/list',
+    method: 'GET',
+    params: { pageNum, pageSize },
+  })
+}

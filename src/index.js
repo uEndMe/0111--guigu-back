@@ -7,6 +7,7 @@ import store from './redux/store';
 import './index.less';
 
 ReactDOM.render(
+  /* 传递 store */
   <Provider store={store}>
     <App />
   </Provider>,
