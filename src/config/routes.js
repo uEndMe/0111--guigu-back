@@ -1,6 +1,6 @@
 import Home from '$comp/home';
 import Category from '$cont/category';
-import Product from '$comp/product';
+import Product from '$cont/product';
 
 const routes = [
   {
